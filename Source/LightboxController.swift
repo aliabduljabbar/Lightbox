@@ -418,8 +418,8 @@ extension LightboxController: PageViewDelegate {
 
 extension LightboxController: HeaderViewDelegate {
 
-  func headerView(_ headerView: HeaderView, didPressDeleteButton deleteButton: UIButton) {
-    deleteButton.isEnabled = false
+  func headerView(_ headerView: HeaderView, didPressShareButton shareButton: UIButton) {
+    shareButton.isEnabled = false
 
     guard numberOfPages != 1 else {
       pageViews.removeAll()
@@ -441,7 +441,7 @@ extension LightboxController: HeaderViewDelegate {
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
       self.configureLayout(self.view.bounds.size)
       self.currentPage = Int(self.scrollView.contentOffset.x / self.view.bounds.width)
-      deleteButton.isEnabled = true
+      shareButton.isEnabled = true
     }
   }
 
@@ -460,7 +460,7 @@ extension LightboxController: FooterViewDelegate {
   public func footerView(_ footerView: FooterView, didExpand expanded: Bool) {
     UIView.animate(withDuration: 0.25, animations: {
       self.overlayView.alpha = expanded ? 1.0 : 0.0
-      self.headerView.deleteButton.alpha = expanded ? 0.0 : 1.0
+      self.headerView.shareButton.alpha = expanded ? 0.0 : 1.0
     })
   }
 }
